@@ -53,13 +53,20 @@ Each X-Y stage is driven by a stepper motor and it's position recorded via a inc
 
 \section{Results}
 
+\subsection{Repetability}
+
+It is important that any systematic errors can be measured and removed from the pupil and that the blar errors integrate down to the 1\,um RMS level required. In order to investigate the white-noise properties of the correleation receiver, a room-temperature black-body load was placed at the 
+
+
 \subsection{Processing}
 
 The raw correlated data is binned into 8\,mm square pixels. In order to reduce the ringing effects of finite image size, the outer portion of the PSF is padded with false ZEMAX data.  The ZEMAX data is weighted-merged into the real data between a radius from the center of the PSF between 180 and 195mm.
 
 A phase correction has to occur due to receiver being moved in an X-Y plane rather than a sphere.  This is a purely geometric term and is calculated by fitting a quadratic phase term to the center of the PSF and applying that fit to the data-grid {\bf insert equation}. A 2-d Hanning {\bf check} window is then applied to the 2d data grid to remove edge effects.  The result grid is then 2-d FFT and the pupil produced. 
 
+\subsection{Comparison to Theory}
 
+The non-idea
 
 {\bf check weighting - should not be done on binned data?}
 
