@@ -20,11 +20,48 @@ Bragg gratings; (060.2370) Fiber optics sensors.}
 
 \section{Introduction}
 
+The next generation of sub-mm telescope will be on the scale of 25-30m, working at wavelengths as short as 200\,um.  In order to maintain efficiences at these sort wavelengths, a surface accuracy of better than 12\,um RMS is required. 
+
+Standard techniques  
+
+With the future posibility of large, stearble mm-wave 
+
 \section{Theory}
 
+\subsection{Offsets}
+
+ARGHHH
+
+\subsection{ZEMAX model}
+
+An equivalent f-12.5 model of the Caltech Sub-mm Observatory was designed in ZEMAX for lab testing.  This model as designed to produce a PSF similat to what one would expect from an observing run on the telescope.  Using ZEMAX's physical optics package, 
+
+In order to test in the lab a model of the CSO was constructed. This was input into ZEMAX where 
 \section{Instrument}
 
+The wfs consists of two distinct parts. The sensor itself and the CSO simulator.
+
+Each receiver consists of a three RF amplifier blocks with a band-pass filter inbetween the second and third stage. The amplified RF signal is then downcoverted using a pacific millimeter harmonic mixer. The IF and LO are introduced via a diplexor.  The down-conversion provides an IF frequency range of DC-2.5\,GHz.
+
+{\bf Horns, mylar, image}
+
+The IF from each receiver is amplified via a set of mini-circuits LNA, and equalized.  The output from the IF chains are then sampled using two 4-bit 5GSPS ADC connected to a ROACH-1 board.  Each bit-stream from the ADCs is passed through a Poly-phase filter bank and then fourier transformed into 128 Channels.  The fourier transform from both IF chains are then cross and autocorrelated to produce the IF channel powers and the real and imaginary correlated signal.    These data-streams are then accumulated and placed into memory for readout.  
+
+{\bf insert table for amplifier parameters}
+
+Each X-Y stage is driven by a stepper motor and it's position recorded via a incremental rotary encoder.  A PPMAC motion controller is used to command the scan profile and record the stage position.  A timing tick is provided to both the ROACH board and the PPMAC so that the correlated data can be easily matched to the stage position.
+
 \section{Results}
+
+\subsection{Processing}
+
+The raw correlated data is binned into 8\,mm square pixels. In order to reduce the ringing effects of finite image size, the outer portion of the PSF is padded with false ZEMAX data.  The ZEMAX data is weighted-merged into the real data between a radius from the center of the PSF between 180 and 195mm.
+
+A phase correction has to occur due to receiver being moved in an X-Y plane rather than a sphere.  This is a purely geometric term and is calculated by fitting a quadratic phase term to the center of the PSF and applying that fit to the data-grid {\bf insert equation}. A 2-d Hanning {\bf check} window is then applied to the 2d data grid to remove edge effects.  The result grid is then 2-d FFT and the pupil produced. 
+
+
+
+{\bf check weighting - should not be done on binned data?}
 
 \section{Conclusions}
 
